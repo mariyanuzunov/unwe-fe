@@ -1,0 +1,94 @@
+<div class="container">
+  <div class="sidebar">
+    <section class="product-categories">
+      <span>Категории</span>
+      <ul>
+        <li>
+          <a
+            routerLink="/catalogue"
+            [queryParams]="{ category: 'интериорна врата' }"
+            >Интериорни врати</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/catalogue"
+            [queryParams]="{ category: 'входна врата' }"
+            >Входни врати</a
+          >
+        </li>
+      </ul>
+    </section>
+
+    <section class="product-manufacturers">
+      <span>Производители</span>
+      <ul>
+        <li>
+          <a
+            routerLink="/catalogue"
+            [queryParams]="{ manufacturer: 'Variodor' }"
+            >Variodor</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/catalogue"
+            [queryParams]="{ manufacturer: 'Eurostill' }"
+            >Eurostill</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/catalogue"
+            [queryParams]="{ manufacturer: 'Star Security Door' }"
+            >Star Security Door</a
+          >
+        </li>
+        <li>
+          <a routerLink="/catalogue" [queryParams]="{ manufacturer: 'Haska' }"
+            >Haska</a
+          >
+        </li>
+      </ul>
+    </section>
+
+    <section class="product-filters">
+      <p>Филтри</p>
+
+      <!-- <span>Търсене</span> -->
+      <mat-form-field appearance="outline">
+        <mat-label> По ключова дума</mat-label>
+        <input matInput [(ngModel)]="searchPattern" />
+      </mat-form-field>
+
+      <div class="price-filter">
+        <span>Цена </span>
+        <span>от</span>
+        <mat-form-field appearance="outline">
+          <mat-label>X лв.</mat-label>
+          <input matInput type="number" [(ngModel)]="min" />
+        </mat-form-field>
+        <span>до</span>
+        <mat-form-field appearance="outline">
+          <mat-label>X лв.</mat-label>
+          <input matInput type="number" [(ngModel)]="max" />
+        </mat-form-field>
+      </div>
+    </section>
+  </div>
+
+  <div class="items-container">
+    <app-item-preview
+      *ngFor="
+        let door of doors$
+          | async
+          | categoryFilter: (category$ | async)
+          | manufacturerFilter: (manufacturer$ | async)
+          | searchFilter: searchPattern
+          | priceFilter: min:max
+      "
+      [item]="door"
+      (details)="detailsHandler($event)"
+    ></app-item-preview>
+  </div>
+</div>

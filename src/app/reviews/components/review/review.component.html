@@ -1,0 +1,22 @@
+<mat-card class="review">
+  <p>
+    <span class="author-name">{{
+      review.author.firstName + " " + review.author.lastName
+    }}</span>
+    <span> написа:</span>
+    <button
+      (click)="deleteReview.emit(review._id)"
+      class="btn-delete"
+      mat-flat-button
+      color="warn"
+    >
+      Изтрий
+    </button>
+  </p>
+
+  <p class="review-content">{{ review.content }}</p>
+
+  <p class="review-date">
+    Публикувано на <span>{{ review.createdAt | mongooseDate }}</span>
+  </p>
+</mat-card>

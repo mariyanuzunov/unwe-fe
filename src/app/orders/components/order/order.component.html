@@ -1,0 +1,63 @@
+<mat-card class="order mat-elevation-z2">
+  <section class="order-status-container">
+    <p>
+      Регистрирана на: <span>{{ order.createdAt | mongooseDate }}</span>
+    </p>
+    <p class="order-status">
+      Статус: <span>{{ order.status }}</span>
+    </p>
+    <div *ngIf="isAdmin">
+      <mat-form-field appearance="fill">
+        <mat-label>Нов статус</mat-label>
+        <mat-select [formControl]="statusControl">
+          <mat-option *ngFor="let op of statusOptions" [value]="op.value">
+            {{ op.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button
+        mat-flat-button
+        (click)="
+          changeOrderStatus.emit({
+            id: order._id,
+            newStatus: statusControl.value
+          })
+        "
+      >
+        Промени
+      </button>
+    </div>
+
+    <button
+      *ngIf="order.status == 'регистрирана' && !isAdmin"
+      mat-flat-button
+      color="warn"
+      class="cancel-order-btn"
+      (click)="cancelOrder.emit(order._id)"
+    >
+      Анулирай поръчката
+    </button>
+  </section>
+
+  <section class="order-products-container">
+    <article *ngFor="let product of order.products" class="order-item">
+      <img src="{{ product.imgUrl }}" alt="product image" />
+      <p>{{ product.title }}</p>
+      <p>{{ product.price }} лв.</p>
+    </article>
+  </section>
+
+  <section class="order-details-container">
+    <p class="order-total-cost">
+      Обща сума: <span>{{ totalCost }} лв.</span>
+    </p>
+    <p class="order-shipping-address">
+      Адрес за доставка: <span>{{ order.shippingAddress }}</span>
+    </p>
+    <p class="receiver-details">
+      Получател:
+      <span>{{ order.customer.firstName + " " + order.customer.lastName }}</span
+      >, телефон за връзка - <span>{{ order.customer.phone }}</span>
+    </p>
+  </section>
+</mat-card>

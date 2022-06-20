@@ -1,0 +1,30 @@
+@use '~@angular/material' as mat;
+
+mat-card {
+  width: 280px;
+  margin: 8px;
+  text-align: center;
+  border-radius: 13px;
+  background-color: #f1efe9;
+
+  img {
+    width: 215px;
+    height: 430px;
+    margin-top: 16px;
+  }
+
+  mat-card-title {
+    font-size: small;
+  }
+
+  .price {
+    margin-top: 18px;
+    font-size: 18px;
+    font-weight: 400;
+  }
+}
+
+mat-card:hover {
+  @include mat.elevation-transition();
+  @include mat.elevation(7);
+}

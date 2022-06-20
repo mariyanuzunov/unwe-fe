@@ -1,0 +1,26 @@
+<section class="profile-details">
+  <mat-card>
+    <img
+      src="https://blindoorltd.com/wp-content/uploads/2021/08/73-730477_first-name-profile-image-placeholder-png.png"
+    />
+
+    <mat-divider [vertical]="true"></mat-divider>
+
+    <section>
+      <div>
+        <mat-icon aria-hidden="false">person</mat-icon>
+        <span> {{ user.firstName + " " + user.lastName }}</span>
+      </div>
+
+      <div>
+        <mat-icon aria-hidden="false">email</mat-icon>
+        <span> {{ user.email }}</span>
+      </div>
+
+      <div>
+        <mat-icon aria-hidden="false">phone</mat-icon>
+        <span> {{ user.phone }}</span>
+      </div>
+    </section>
+  </mat-card>
+</section>

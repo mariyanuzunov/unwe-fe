@@ -1,0 +1,55 @@
+<app-page-title [title]="'ВХОД'"></app-page-title>
+
+<mat-card class="form-container">
+  <div class="auth-error" *ngIf="error$ | async as error">
+    Грешно потребителско име или парола!
+  </div>
+
+  <form [formGroup]="loginForm" (ngSubmit)="loginHandler()">
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>E-mail</mat-label>
+      <input matInput formControlName="email" required />
+      <mat-error
+        *ngIf="
+          loginForm.controls.email.touched && loginForm.controls.email.invalid
+        "
+      >
+        <span *ngIf="loginForm.controls.email.errors?.required"
+          >Това поле е задължително!</span
+        >
+        <span *ngIf="loginForm.controls.email.errors?.pattern"
+          >Невалиден e-mail адрес!</span
+        >
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Парола</mat-label>
+      <input matInput formControlName="password" type="password" />
+      <mat-error
+        *ngIf="
+          loginForm.controls.password.touched &&
+          loginForm.controls.password.invalid
+        "
+      >
+        <span *ngIf="loginForm.controls.password.errors?.required"
+          >Това поле е задължително!</span
+        >
+        <span *ngIf="loginForm.controls.password.errors?.minlength"
+          >Паролата трябва да бъде дълга поне 5 символа!</span
+        >
+      </mat-error>
+    </mat-form-field>
+
+    <div class="form-controls">
+      <button
+        mat-raised-button
+        [disabled]="!loginForm.valid"
+        color="primary"
+        type="submit"
+      >
+        Вход
+      </button>
+      <a routerLink="/register" mat-button> или създаване на нов профил</a>
+    </div>
+  </form>
+</mat-card>

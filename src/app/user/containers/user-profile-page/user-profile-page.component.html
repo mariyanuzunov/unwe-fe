@@ -1,0 +1,17 @@
+<div *ngIf="user$" class="container">
+  <mat-tab-group class="nav">
+    <mat-tab label="Моят профил">
+      <app-profile-details [user]="user$"></app-profile-details>
+    </mat-tab>
+    <mat-tab label="Моите поръчки">
+      <section class="orders-list">
+        <app-orders-list [orders]="orders$ | async"></app-orders-list>
+      </section>
+    </mat-tab>
+    <mat-tab label="Моите ревюта">
+      <section class="reviews-list">
+        <app-reviews-list [reviews]="reviews$ | async"></app-reviews-list>
+      </section>
+    </mat-tab>
+  </mat-tab-group>
+</div>

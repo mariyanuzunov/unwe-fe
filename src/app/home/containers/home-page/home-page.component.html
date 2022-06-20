@@ -1,0 +1,20 @@
+<section class="header-img">
+  <img
+    src="https://blindoorltd.com/wp-content/uploads/2021/07/cropped-Screenshot-2021-07-01-210436-1536x642.png"
+  />
+</section>
+
+<app-features-box></app-features-box>
+
+<app-featured-images></app-featured-images>
+
+<section class="newest-items-container">
+  <h1>Последно добавени</h1>
+  <section class="newest-items">
+    <app-item-preview
+      *ngFor="let door of (doors$ | async)?.slice(0, 4)"
+      [item]="door"
+      (details)="detailsHandler($event)"
+    ></app-item-preview>
+  </section>
+</section>

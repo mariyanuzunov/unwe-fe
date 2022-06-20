@@ -1,0 +1,7 @@
+<mat-card class="mat-elevation-z2" (click)="details.emit(item._id)">
+  <mat-card-title> {{ item.title }} </mat-card-title>
+  <mat-divider></mat-divider>
+  <img matCardImage src="{{ item.imgUrl }}" />
+  <mat-divider></mat-divider>
+  <p class="price">{{ item.price }} лв.</p>
+</mat-card>

@@ -1,0 +1,13 @@
+<section *ngIf="orders && orders.length > 0; else emptyList" class="my-orders">
+  <app-order
+    *ngFor="let order of orders"
+    [order]="order"
+    [isAdmin]="isAdmin$ | async"
+    (cancelOrder)="cancelOrderHandler($event)"
+    (changeOrderStatus)="changeOrderStatusHandler($event)"
+  ></app-order>
+</section>
+
+<ng-template #emptyList>
+  <h2>Все още не сте направили поръчка. :(</h2>
+</ng-template>

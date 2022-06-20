@@ -1,0 +1,19 @@
+.features {
+  display: flex;
+  justify-content: space-evenly;
+  width: 85%;
+  background-color: #f1efe9;
+  border-radius: 15px;
+  margin: 7px auto;
+  div {
+    width: 200px;
+    text-align: center;
+    h2 {
+      font-weight: 500;
+    }
+    p {
+      font-size: 14px;
+      font-weight: 300;
+    }
+  }
+}

@@ -1,0 +1,78 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  width: 1400px;
+}
+
+.mat-card {
+  border-radius: 13px;
+}
+
+.form-container {
+  background-color: rgb(250, 250, 250);
+  width: 500px;
+  font-size: 18px;
+
+  .select-inputs {
+    display: flex;
+    justify-content: space-between;
+
+    .form-field-select {
+      width: 224px;
+    }
+  }
+
+  .form-field {
+    display: block;
+  }
+
+  textarea {
+    height: 200px;
+  }
+
+  button {
+    width: 100%;
+    font-size: 18px;
+  }
+}
+
+h2 {
+  font-size: 23px;
+  font-weight: 300;
+  font-style: italic;
+  text-align: center;
+}
+
+.item-details-container {
+  background-color: rgb(250, 250, 250);
+  width: 850px;
+
+  .item-details {
+    display: flex;
+    padding-top: 15px;
+  }
+
+  .img {
+    width: 270px;
+    height: 600px;
+    margin-right: 50px;
+  }
+
+  .title {
+    font-size: 19px;
+    font-weight: 500;
+  }
+
+  .price {
+    font-size: 17px;
+    margin-top: 20px;
+  }
+
+  .description {
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 300;
+    text-align: justify;
+  }
+}

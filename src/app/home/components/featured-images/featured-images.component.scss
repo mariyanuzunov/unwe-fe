@@ -1,0 +1,52 @@
+.featured-images {
+  display: grid;
+  grid-template-columns: 55% 45%;
+  grid-template-rows: 55% 45%;
+  width: 60%;
+  height: 700px;
+  margin: 50px auto;
+
+  a {
+    display: block;
+    color: #000;
+    background-size: cover;
+    margin: 4px;
+
+    p {
+      display: inline-block;
+      background-color: #ebe7df;
+      font-size: 22px;
+      font-weight: 300;
+      text-shadow: 1px 1px 1px;
+      margin-top: 40px;
+      padding: 5px;
+    }
+  }
+
+  a:hover {
+    opacity: 0.9;
+    zoom: 1.1;
+    margin: 1px;
+
+    p {
+      font-size: 24px;
+      font-weight: 400;
+    }
+  }
+}
+
+.img-1 {
+  background-image: url("https://blindoorltd.com/wp-content/uploads/2021/08/variodor.jpg");
+}
+
+.img-2 {
+  background-image: url("https://blindoorltd.com/wp-content/uploads/2021/08/haska.jpg");
+}
+
+.img-3 {
+  background-image: url("https://blindoorltd.com/wp-content/uploads/2021/08/std.jpg");
+}
+
+.img-4 {
+  background-image: url("https://blindoorltd.com/wp-content/uploads/2021/08/eurostill.png");
+}

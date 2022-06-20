@@ -1,0 +1,25 @@
+.form-container {
+  width: 420px;
+  margin: 20px auto 0px auto;
+  border-radius: 13px;
+
+  .form-field {
+    display: block;
+  }
+
+  .form-controls {
+    margin-top: 15px;
+
+    a {
+      float: right;
+    }
+  }
+
+  .auth-error {
+    background-color: rgb(255, 193, 193);
+    margin-bottom: 15px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 4px;
+  }
+}

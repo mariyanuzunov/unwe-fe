@@ -1,0 +1,11 @@
+<ng-container *ngIf="reviews && reviews.length > 0; else emptyList">
+  <app-review
+    *ngFor="let review of reviews"
+    [review]="review"
+    (deleteReview)="deleteReviewHandler($event)"
+  ></app-review>
+</ng-container>
+
+<ng-template #emptyList>
+  <h3>Все още няма потребителски отзиви за този продукт...</h3>
+</ng-template>

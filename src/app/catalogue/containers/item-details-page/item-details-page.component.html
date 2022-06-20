@@ -1,0 +1,19 @@
+<app-item-details
+  [user]="user$ | async"
+  [item]="item$ | async"
+  (addToCart)="addToCartHandler($event)"
+  (edit)="editHandler($event)"
+  (remove)="deleteDoorHandler($event)"
+></app-item-details>
+
+<app-add-review
+  *ngIf="(user$ | async)?.purchases?.includes(id)"
+  [userId]="(user$ | async)?._id"
+  [itemId]="(item$ | async)?._id"
+></app-add-review>
+
+<section class="reviews-container">
+  <h1>Потребителски отзиви</h1>
+  <mat-divider></mat-divider>
+  <app-reviews-list [reviews]="reviews$ | async"></app-reviews-list>
+</section>

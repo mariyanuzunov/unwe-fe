@@ -1,0 +1,135 @@
+<div class="container">
+  <mat-card class="form-container mat-elevation-z4">
+    <h2>Добавяне на продукт</h2>
+    <form [formGroup]="addItemForm" (ngSubmit)="submitHandler()">
+      <div class="select-inputs">
+        <mat-form-field class="form-field-select" appearance="outline">
+          <mat-label>Категория</mat-label>
+          <mat-select formControlName="category">
+            <mat-option
+              *ngFor="let category of categories"
+              [value]="category"
+              >{{ category }}</mat-option
+            >
+          </mat-select>
+          <mat-hint align="end"></mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="form-field-select" appearance="outline">
+          <mat-label>Производител</mat-label>
+          <mat-select formControlName="manufacturer">
+            <mat-option
+              *ngFor="let manufacturer of manufacturers"
+              [value]="manufacturer"
+              >{{ manufacturer }}</mat-option
+            >
+          </mat-select>
+          <mat-hint align="end"></mat-hint>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Заглавие</mat-label>
+        <input matInput formControlName="title" required />
+        <mat-error
+          *ngIf="
+            addItemForm.controls.title.touched &&
+            addItemForm.controls.title.invalid
+          "
+        >
+          <span *ngIf="addItemForm.controls.title.errors?.required"
+            >Това поле е задължително!</span
+          >
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Описание</mat-label>
+        <textarea matInput formControlName="description" required></textarea>
+        <mat-error
+          *ngIf="
+            addItemForm.controls.description.touched &&
+            addItemForm.controls.description.invalid
+          "
+        >
+          <span *ngIf="addItemForm.controls.description.errors?.required"
+            >Това поле е задължително!</span
+          >
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Цена</mat-label>
+        <input matInput formControlName="price" required />
+        <mat-error
+          *ngIf="
+            addItemForm.controls.price.touched &&
+            addItemForm.controls.price.invalid
+          "
+        >
+          <span *ngIf="addItemForm.controls.price.errors?.required"
+            >Това поле е задължително!</span
+          >
+          <span *ngIf="addItemForm.controls.price.errors?.min"
+            >Цената трябва да бъде положително число!</span
+          >
+          <span *ngIf="addItemForm.controls.price.errors?.pattern"
+            >Моля, въведете число!</span
+          >
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Линк към изображение</mat-label>
+        <input matInput formControlName="imgUrl" required />
+        <mat-error
+          *ngIf="
+            addItemForm.controls.imgUrl.touched &&
+            addItemForm.controls.imgUrl.invalid
+          "
+        >
+          <span *ngIf="addItemForm.controls.imgUrl.errors?.required"
+            >Това поле е задължително!</span
+          >
+          <span *ngIf="addItemForm.controls.imgUrl.errors?.pattern"
+            >Невалиден URL адрес!</span
+          >
+        </mat-error>
+      </mat-form-field>
+
+      <div class="form-controls">
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="!addItemForm.valid"
+        >
+          Добави
+        </button>
+      </div>
+    </form>
+  </mat-card>
+
+  <div class="preview-container">
+    <mat-card class="item-details-container mat-elevation-z0">
+      <h2>Предварителен преглед</h2>
+      <mat-divider></mat-divider>
+      <section class="item-details">
+        <img
+          src="{{
+            addItemForm.controls.imgUrl.valid ? addItemForm.value.imgUrl : ''
+          }}"
+          class="img"
+        />
+        <div>
+          <div class="title">{{ addItemForm.value.title || "> Заглавие" }}</div>
+          <div class="price">
+            {{ addItemForm.value.price || "> Цена " }} лв.
+          </div>
+          <div class="rating"></div>
+          <div class="description">
+            {{ addItemForm.value.description || "> Описание" }}
+          </div>
+        </div>
+      </section>
+    </mat-card>
+  </div>
+</div>

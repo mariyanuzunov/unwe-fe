@@ -1,0 +1,138 @@
+<app-page-title [title]="'РЕГИСТРАЦИЯ'"></app-page-title>
+
+<mat-card class="form-container">
+  <div class="auth-error" *ngIf="error$ | async as error">
+    {{ error?.error }}
+  </div>
+
+  <form [formGroup]="registerForm" (ngSubmit)="registerHandler()">
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Име</mat-label>
+      <input matInput formControlName="firstName" required />
+      <mat-error
+        *ngIf="
+          registerForm.controls.firstName.touched &&
+          registerForm.controls.firstName.invalid
+        "
+      >
+        <span *ngIf="registerForm.controls.firstName.errors?.required"
+          >Това поле е задължително!</span
+        >
+        <span *ngIf="registerForm.controls.lastName.errors?.minlength"
+          >Името трябва да бъде дълго поне 2 символа!</span
+        >
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Фамилия</mat-label>
+      <input matInput formControlName="lastName" required />
+      <mat-error
+        *ngIf="
+          registerForm.controls.lastName.touched &&
+          registerForm.controls.lastName.invalid
+        "
+      >
+        <span *ngIf="registerForm.controls.lastName.errors?.required"
+          >Това поле е задължително!</span
+        >
+        <span *ngIf="registerForm.controls.lastName.errors?.minlength"
+          >Фамилията трябва да бъде дълга поне 2 символа!</span
+        >
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>E-mail</mat-label>
+      <input matInput formControlName="email" required />
+      <mat-error
+        *ngIf="
+          registerForm.controls.email.touched &&
+          registerForm.controls.email.invalid
+        "
+      >
+        <span *ngIf="registerForm.controls.email.errors?.required"
+          >Това поле е задължително!</span
+        >
+        <span *ngIf="registerForm.controls.email.errors?.pattern"
+          >Невалиден e-mail адрес!</span
+        >
+      </mat-error>
+    </mat-form-field>
+
+    <div formGroupName="credentials">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Парола</mat-label>
+        <input matInput formControlName="password" type="password" />
+        <mat-error
+          *ngIf="
+            registerForm.get('credentials.password')?.touched &&
+            registerForm.get('credentials.password')?.invalid
+          "
+        >
+          <span
+            *ngIf="registerForm.get('credentials.password')?.errors?.required"
+            >Това поле е задължително!</span
+          >
+          <span
+            *ngIf="registerForm.get('credentials.password')?.errors?.minlength"
+            >Паролата трябва да бъде дълга поне 5 символа!</span
+          >
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Потвърждаване на паролата</mat-label>
+        <input matInput formControlName="repeatPassword" type="password" />
+        <mat-error
+          *ngIf="
+            registerForm.get('credentials.repeatPassword')?.touched &&
+            registerForm.get('credentials.repeatPassword')?.invalid
+          "
+        >
+          <span
+            *ngIf="
+              registerForm.get('credentials.repeatPassword')?.errors?.required
+            "
+            >Това поле е задължително!</span
+          >
+          <span
+            *ngIf="
+              registerForm.get('credentials.repeatPassword')?.errors?.minlength
+            "
+            >Паролата трябва да бъде дълга поне 5 символа!</span
+          >
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Телефон</mat-label>
+      <input matInput formControlName="phone" required />
+      <mat-error
+        *ngIf="
+          registerForm.controls.phone.touched &&
+          registerForm.controls.phone.invalid
+        "
+      >
+        <span *ngIf="registerForm.controls.phone.errors?.required"
+          >Това поле е задължително!</span
+        >
+        <span *ngIf="registerForm.controls.phone.errors?.pattern"
+          >Телефонният номер трябва да се състои от 10 цифри</span
+        >
+      </mat-error>
+    </mat-form-field>
+
+    <div class="form-controls">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!registerForm.valid"
+      >
+        Регистрация
+      </button>
+      <a routerLink="/login" mat-button> или вход със съществуващ профил</a>
+    </div>
+  </form>
+</mat-card>

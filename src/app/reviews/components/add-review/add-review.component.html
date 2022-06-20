@@ -1,0 +1,24 @@
+<mat-card>
+  <h1>Хей, доволен ли си от покупката? Сподели своето мнение...</h1>
+  <mat-divider></mat-divider>
+  <form>
+    <textarea [formControl]="content" required></textarea>
+    <mat-error *ngIf="content.touched && content.invalid">
+      <span *ngIf="content.errors?.required">Това поле е задължително!</span>
+      <span *ngIf="content.errors?.maxlength"
+        >Максимално разрешеният брой символи е 500!</span
+      >
+    </mat-error>
+    <div>
+      <button
+        (click)="submitHandler()"
+        mat-raised-button
+        [disabled]="!content.valid"
+        color="primary"
+        type="submit"
+      >
+        Изпрати
+      </button>
+    </div>
+  </form>
+</mat-card>

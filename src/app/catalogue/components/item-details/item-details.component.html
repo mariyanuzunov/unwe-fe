@@ -1,0 +1,31 @@
+<mat-card class="item-details-container mat-elevation-z3">
+  <section class="item-details">
+    <img src="{{ item?.imgUrl }}" class="img" />
+    <div>
+      <div class="title">
+        {{ item?.title }}
+      </div>
+      <div class="price">{{ item?.price }} лв.</div>
+      <div class="description">
+        {{ item?.description }}
+      </div>
+    </div>
+  </section>
+  <div *ngIf="user" class="controls">
+    <ng-container *ngIf="user?.role == 'customer'">
+      <button mat-stroked-button color="primary" (click)="addToCart.emit(item)">
+        <mat-icon class="icon">add_shopping_cart</mat-icon>
+        <span>Добави в количката</span>
+      </button>
+    </ng-container>
+
+    <ng-container *ngIf="user?.role == 'admin'">
+      <button mat-stroked-button (click)="edit.emit(item)">
+        <mat-icon class="icon">edit</mat-icon>
+      </button>
+      <button mat-stroked-button color="warn" (click)="remove.emit(item?._id)">
+        <mat-icon class="icon">delete</mat-icon>
+      </button>
+    </ng-container>
+  </div>
+</mat-card>

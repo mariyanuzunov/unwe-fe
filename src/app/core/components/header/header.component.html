@@ -1,0 +1,45 @@
+<mat-toolbar class="mat-elevation-z3">
+  <h1>BLINDOOR</h1>
+
+  <nav>
+    <a mat-button routerLink="/">Начало</a>
+    <a mat-stroked-button routerLink="/catalogue">Каталог</a>
+    <ng-container *ngIf="!user">
+      <a mat-button routerLink="/login">Вход</a>
+      <a mat-button routerLink="/register">Регистрация</a>
+    </ng-container>
+
+    <ng-container *ngIf="user">
+      <button mat-button [matMenuTriggerFor]="menu">
+        Здравей, {{ user?.firstName }}
+      </button>
+      <mat-menu class="dropdown" #menu="matMenu">
+        <ng-container *ngIf="user?.role == 'customer'">
+          <a mat-menu-item routerLink="/profile">
+            <mat-icon>person</mat-icon> Профил</a
+          >
+          <a mat-menu-item routerLink="/cart">
+            <span class="cart-link">
+              <mat-icon
+                matBadge="{{ cartItemsCount$ | async }}"
+                matBadgeColor="warn"
+                >shopping_cart</mat-icon
+              >
+              Количка</span
+            >
+          </a>
+        </ng-container>
+        <ng-container *ngIf="user?.role == 'admin'">
+          <a mat-menu-item routerLink="/admin-panel"
+            ><mat-icon>admin_panel_settings</mat-icon>Админ панел</a
+          >
+        </ng-container>
+        <mat-divider></mat-divider>
+
+        <button mat-menu-item (click)="logout.emit()">
+          <mat-icon>logout</mat-icon>Изход
+        </button>
+      </mat-menu>
+    </ng-container>
+  </nav>
+</mat-toolbar>
