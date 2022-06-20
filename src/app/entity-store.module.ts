@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DefaultDataServiceConfig } from '@ngrx/data';
 
 const defaultDataServiceConfig: DefaultDataServiceConfig = {
-  root: 'http://localhost:3000',
+  root: 'https://unwe-blindoor-api.herokuapp.com/',
   timeout: 5000,
 };
 
